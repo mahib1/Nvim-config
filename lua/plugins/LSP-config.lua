@@ -11,6 +11,7 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
+					"rust_analyzer",
 					"lua_ls",
 					"tsserver",
 					"ltex",
@@ -32,8 +33,10 @@ return {
 		"neovim/nvim-lspconfig",
 		lazy = false,
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local capabilities = require('cmp_nvim_lsp').default_capabilities()
 			local lspconfig = require("lspconfig")
+      local util = require "lspconfig/util"
+
 			lspconfig.lua_ls.setup({ capabilities = capabilities })
 			lspconfig.tsserver.setup({ capabilities = capabilities })
 			lspconfig.ltex.setup({ capabilities = capabilities })
@@ -41,6 +44,19 @@ return {
 			lspconfig.marksman.setup({ capabilities = capabilities })
 			lspconfig.pyre.setup({ capabilities = capabilities })
 			lspconfig.pylsp.setup({ capabilities = capabilities })
+			lspconfig.rust_analyzer.setup({
+				capabilities = capabilities,
+        on_attach = on_attach,
+				filetypes = { "rust" },
+				root_dir = util.root_pattern("Cargo.toml"),
+				settings = {
+					["rust-analyzer"] = {
+						cargo = {
+							allFeatures = true,
+						},
+					},
+				},
+			})
 
 			lspconfig.csharp_ls.setup({ capabilities = capabilities })
 			lspconfig.clangd.setup({ capabilities = capabilities })
