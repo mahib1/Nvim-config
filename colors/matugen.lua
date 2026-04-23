@@ -1,0 +1,143 @@
+vim.cmd("hi clear")
+if vim.fn.exists("syntax_on") == 1 then
+  vim.cmd("syntax reset")
+end
+
+vim.g.colors_name = "matugen"
+
+local hl = vim.api.nvim_set_hl
+
+-- Base Groups
+hl(0, "Normal", { fg = "#e2e2e9", bg = "#111318" })
+hl(0, "NormalNC", { fg = "#e2e2e9", bg = "#111318" })
+hl(0, "NormalFloat", { fg = "#c4c6cf", bg = "#43474e" })
+hl(0, "FloatBorder", { fg = "#8e9099", bg = "#43474e" })
+hl(0, "ColorColumn", { bg = "#43474e" })
+hl(0, "Cursor", { fg = "#111318", bg = "#e2e2e9" })
+hl(0, "CursorLine", { bg = "#43474e" })
+hl(0, "CursorColumn", { bg = "#43474e" })
+hl(0, "Directory", { fg = "#a8c8ff" })
+hl(0, "DiffAdd", { bg = "#254777", fg = "#d6e3ff" })
+hl(0, "DiffChange", { bg = "#3e4758", fg = "#d9e3f8" })
+hl(0, "DiffDelete", { bg = "#93000a", fg = "#ffdad6" })
+hl(0, "DiffText", { bg = "#563e5c", fg = "#f9d8fe" })
+hl(0, "EndOfBuffer", { fg = "#111318" })
+hl(0, "ErrorMsg", { fg = "#ffb4ab" })
+hl(0, "VertSplit", { fg = "#8e9099" })
+hl(0, "WinSeparator", { fg = "#8e9099" })
+hl(0, "Folded", { fg = "#c4c6cf", bg = "#43474e" })
+hl(0, "IncSearch", { bg = "#a8c8ff", fg = "#07305f" })
+hl(0, "Search", { bg = "#3e4758", fg = "#d9e3f8" })
+hl(0, "LineNr", { fg = "#8e9099" })
+hl(0, "CursorLineNr", { fg = "#a8c8ff", bold = true })
+hl(0, "MatchParen", { bg = "#3e4758", fg = "#d9e3f8", bold = true })
+hl(0, "NonText", { fg = "#8e9099" })
+hl(0, "Pmenu", { bg = "#43474e", fg = "#c4c6cf" })
+hl(0, "PmenuSel", { bg = "#a8c8ff", fg = "#07305f" })
+hl(0, "PmenuSbar", { bg = "#43474e" })
+hl(0, "PmenuThumb", { bg = "#8e9099" })
+hl(0, "Question", { fg = "#a8c8ff" })
+hl(0, "SpecialKey", { fg = "#8e9099" })
+hl(0, "SpellBad", { sp = "#ffb4ab", undercurl = true })
+hl(0, "SpellCap", { sp = "#dcbce1", undercurl = true })
+hl(0, "SpellLocal", { sp = "#bdc7dc", undercurl = true })
+hl(0, "SpellRare", { sp = "#bdc7dc", undercurl = true })
+hl(0, "StatusLine", { bg = "#43474e", fg = "#c4c6cf" })
+hl(0, "StatusLineNC", { bg = "#111318", fg = "#e2e2e9" })
+hl(0, "TabLine", { bg = "#43474e", fg = "#c4c6cf" })
+hl(0, "TabLineFill", { bg = "#111318" })
+hl(0, "TabLineSel", { bg = "#a8c8ff", fg = "#07305f" })
+hl(0, "Title", { fg = "#a8c8ff", bold = true })
+hl(0, "Visual", { bg = "#3e4758" })
+hl(0, "WarningMsg", { fg = "#ffb4ab" })
+
+-- Syntax
+hl(0, "Comment", { fg = "#8e9099", italic = true })
+hl(0, "Constant", { fg = "#ffb4ab" })
+hl(0, "String", { fg = "#dcbce1" })
+hl(0, "Character", { fg = "#dcbce1" })
+hl(0, "Number", { fg = "#ffb4ab" })
+hl(0, "Boolean", { fg = "#ffb4ab" })
+hl(0, "Float", { fg = "#ffb4ab" })
+hl(0, "Identifier", { fg = "#e2e2e9" })
+hl(0, "Function", { fg = "#bdc7dc" })
+hl(0, "Statement", { fg = "#a8c8ff" })
+hl(0, "Conditional", { fg = "#a8c8ff" })
+hl(0, "Repeat", { fg = "#a8c8ff" })
+hl(0, "Label", { fg = "#a8c8ff" })
+hl(0, "Operator", { fg = "#3f5f90" })
+hl(0, "Keyword", { fg = "#a8c8ff" })
+hl(0, "Exception", { fg = "#a8c8ff" })
+hl(0, "PreProc", { fg = "#a8c8ff" })
+hl(0, "Include", { fg = "#a8c8ff" })
+hl(0, "Define", { fg = "#a8c8ff" })
+hl(0, "Macro", { fg = "#bdc7dc" })
+hl(0, "PreCondit", { fg = "#a8c8ff" })
+hl(0, "Type", { fg = "#dcbce1" })
+hl(0, "StorageClass", { fg = "#dcbce1" })
+hl(0, "Structure", { fg = "#dcbce1" })
+hl(0, "Typedef", { fg = "#dcbce1" })
+hl(0, "Special", { fg = "#ffb4ab" })
+hl(0, "SpecialChar", { fg = "#ffb4ab" })
+hl(0, "Tag", { fg = "#a8c8ff" })
+hl(0, "Delimiter", { fg = "#8e9099" })
+hl(0, "SpecialComment", { fg = "#8e9099" })
+hl(0, "Debug", { fg = "#ffb4ab" })
+hl(0, "Underlined", { underline = true })
+hl(0, "Ignore", { fg = "#111318" })
+hl(0, "Error", { fg = "#ffb4ab", bg = "#93000a" })
+hl(0, "Todo", { fg = "#254777", bg = "#a8c8ff" })
+
+-- Treesitter
+hl(0, "@variable", { fg = "#e2e2e9" })
+hl(0, "@variable.builtin", { fg = "#ffb4ab" })
+hl(0, "@variable.parameter", { fg = "#3f5f90" })
+hl(0, "@variable.member", { fg = "#bdc7dc" })
+hl(0, "@property", { fg = "#bdc7dc" }) -- JSON/YAML/TOML keys
+hl(0, "@function", { fg = "#bdc7dc" })
+hl(0, "@function.builtin", { fg = "#bdc7dc" })
+hl(0, "@function.call", { fg = "#bdc7dc" })
+hl(0, "@constructor", { fg = "#dcbce1" })
+hl(0, "@keyword", { fg = "#a8c8ff" })
+hl(0, "@type", { fg = "#dcbce1" })
+hl(0, "@module", { fg = "#dcbce1" }) -- TOML tables, namespaces
+hl(0, "@string", { fg = "#dcbce1" }) -- String values
+hl(0, "@string.escape", { fg = "#ffb4ab" })
+hl(0, "@number", { fg = "#ffb4ab" })
+hl(0, "@boolean", { fg = "#ffb4ab" })
+hl(0, "@punctuation.delimiter", { fg = "#8e9099" }) -- Colons, commas
+hl(0, "@punctuation.bracket", { fg = "#8e9099" }) -- {}, []
+hl(0, "@punctuation.special", { fg = "#3f5f90" })
+
+-- Diagnostics
+hl(0, "DiagnosticError", { fg = "#ffb4ab" })
+hl(0, "DiagnosticWarn", { fg = "#dcbce1" })
+hl(0, "DiagnosticInfo", { fg = "#bdc7dc" })
+hl(0, "DiagnosticHint", { fg = "#a8c8ff" })
+hl(0, "DiagnosticUnderlineError", { sp = "#ffb4ab", undercurl = true })
+hl(0, "DiagnosticUnderlineWarn", { sp = "#dcbce1", undercurl = true })
+hl(0, "DiagnosticUnderlineInfo", { sp = "#bdc7dc", undercurl = true })
+hl(0, "DiagnosticUnderlineHint", { sp = "#a8c8ff", undercurl = true })
+
+-- Gitsigns
+hl(0, "GitSignsAdd", { fg = "#a8c8ff" })
+hl(0, "GitSignsChange", { fg = "#bdc7dc" })
+hl(0, "GitSignsDelete", { fg = "#ffb4ab" })
+
+-- Fzf Lua
+hl(0, "FzfLuaBorder", { fg = "#8e9099" })
+hl(0, "FzfLuaTitle", { fg = "#a8c8ff" })
+hl(0, "FzfLuaCursor", { bg = "#3e4758" })
+
+-- NvimTree
+hl(0, "NvimTreeNormal", { fg = "#e2e2e9", bg = "none" })
+hl(0, "NvimTreeNormalNC", { fg = "#e2e2e9", bg = "none" })
+hl(0, "NvimTreeFolderName", { fg = "#a8c8ff" })
+hl(0, "NvimTreeFolderIcon", { fg = "#a8c8ff" })
+hl(0, "NvimTreeOpenedFolderName", { fg = "#a8c8ff", bold = true })
+hl(0, "NvimTreeRootFolder", { fg = "#bdc7dc", bold = true })
+
+-- Blink Cmp
+hl(0, "BlinkCmpMenu", { bg = "#43474e" })
+hl(0, "BlinkCmpMenuBorder", { fg = "#8e9099" })
+hl(0, "BlinkCmpMenuSelection", { bg = "#a8c8ff", fg = "#07305f" })
