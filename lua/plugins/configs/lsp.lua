@@ -50,6 +50,10 @@ local function lsp_on_attach(ev)
 		require("fzf-lua").lsp_definitions({ jump_to_single_result = true })
 	end, opts)
 
+	vim.keymap.set("n", "<leader>lf", function()
+		vim.lsp.buf.format({ async = true })
+	end, { desc = "Format file" })
+
 	vim.keymap.set("n", "<leader>gD", vim.lsp.buf.definition, opts)
 
 	vim.keymap.set("n", "<leader>gS", function()
@@ -158,16 +162,21 @@ vim.lsp.config("bashls", {})
 vim.lsp.config("ts_ls", {})
 vim.lsp.config("gopls", {})
 vim.lsp.config("clangd", {})
+vim.lsp.config("verible", {})
 
 do
 	local luacheck = require("efmls-configs.linters.luacheck")
 	local stylua = require("efmls-configs.formatters.stylua")
 
-	local flake8 = require("efmls-configs.linters.flake8")
-	local black = require("efmls-configs.formatters.black")
+	local flake8 = {
+		lintCommand = "flake8 --max-line-length=120 --format=%(path)s:%(row)d:%(col)d:%(code)s:%(text)s -",
+		lintStdin = true,
+		lintFormats = { "%f:%l:%c:%t%n:%m" },
+	}
 
 	local prettier_d = require("efmls-configs.formatters.prettier_d")
 	local eslint_d = require("efmls-configs.linters.eslint_d")
+
 
 	local fixjson = require("efmls-configs.formatters.fixjson")
 
@@ -176,6 +185,12 @@ do
 
 	local cpplint = require("efmls-configs.linters.cpplint")
 	local clangfmt = require("efmls-configs.formatters.clang_format")
+
+	local autoflake = {
+		formatCommand = "autoflake --remove-all-unused-imports --remove-unused-variables --expand-star-imports --stdin-display-name ${INPUT} -",
+		formatStdin = true,
+	}
+	local black = require("efmls-configs.formatters.black")
 
 	local go_revive = require("efmls-configs.linters.go_revive")
 	local gofumpt = require("efmls-configs.formatters.gofumpt")
@@ -199,6 +214,8 @@ do
 			"typescriptreact",
 			"vue",
 			"svelte",
+			"verilog",
+			"systemverilog",
 		},
 		init_options = { documentFormatting = true },
 		settings = {
@@ -214,12 +231,14 @@ do
 				jsonc = { eslint_d, fixjson },
 				lua = { luacheck, stylua },
 				markdown = { prettier_d },
-				python = { flake8, black },
+				python = { flake8, autoflake, black },
 				sh = { shellcheck, shfmt },
 				typescript = { eslint_d, prettier_d },
 				typescriptreact = { eslint_d, prettier_d },
 				vue = { eslint_d, prettier_d },
 				svelte = { eslint_d, prettier_d },
+				verilog = { verible_fmt, verible_lnt },
+				systemverilog = { verible_fmt, verible_lnt },
 			},
 		},
 	})
@@ -233,4 +252,5 @@ vim.lsp.enable({
 	"gopls",
 	"clangd",
 	"efm",
+	"verible",
 })
